@@ -1,0 +1,23 @@
+<nav class="navbar navbar-dark navbar-expand-lg navbar-fundo" aria-label="Navegação principal">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" routerLink="/home"><i class="bi bi-mortarboard-fill"></i>&nbsp;Escola Demo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas-lg offcanvas-end navbar-fundo" tabindex="-1" id="offcanvasNavbar">
+      <div class="offcanvas-header d-lg-none">
+        <span class="text-white">{{ nomeUsuario }}</span>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasNavbar" aria-label="Fechar"></button>
+      </div>
+      <div class="offcanvas-body d-lg-flex w-100">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link mouse" routerLink="/home" routerLinkActive="fw-bold">Home</a></li>
+          <li class="nav-item"><a class="nav-link mouse" routerLink="/alunos" routerLinkActive="fw-bold">Alunos</a></li>
+          <li class="nav-item"><a class="nav-link mouse" routerLink="/notas" routerLinkActive="fw-bold">Notas</a></li>
+          <li class="nav-item"><a class="nav-link mouse" (click)="sair()">Sair</a></li>
+        </ul>
+        <span class="profile-ava"><i class="bi bi-person-fill"></i>&nbsp;{{ nomeUsuario }}</span>
+      </div>
+    </div>
+  </div>
+</nav>

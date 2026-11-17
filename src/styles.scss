@@ -1,0 +1,13 @@
+:root { --verde: #1f4d3a; --verde-claro: #e8f1ec; --amarelo: #e9b44c; }
+body { background: #f6f7f5; }
+.navbar-fundo { background: var(--verde); }
+.navbar-fundo .nav-link, .navbar-fundo .navbar-brand { color: #fff; }
+.mouse { cursor: pointer; }
+.barraTitulo { border-bottom: 2px solid var(--amarelo); }
+.textoTitulo { font-size: 1.6rem; font-weight: 600; color: var(--verde); }
+.btn-primary { background: var(--verde); border-color: var(--verde); }
+.btn-primary:hover { background: #163a2b; border-color: #163a2b; }
+.profile-ava { color: #fff; padding: .5rem; }
+.largura-coluna-icone { width: 40px; }
+.login-box { max-width: 380px; margin: 12vh auto; }
+.error { color: #b3261e; }

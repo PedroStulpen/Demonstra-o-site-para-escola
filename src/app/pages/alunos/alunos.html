@@ -1,0 +1,68 @@
+<div class="container pt-3">
+  <div class="row barraTitulo mb-3">
+    <div class="col-12 col-lg-4 pt-3"><span class="textoTitulo">Alunos</span></div>
+    <div class="col-12 col-lg-8" align="end">
+      <button class="btn btn-primary mb-2" (click)="cadastrar()"><i class="bi bi-plus-lg"></i> Cadastrar aluno</button>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-8 col-lg-10">
+      <label class="form-label">Filtro</label>
+      <input type="text" class="form-control mb-3" [(ngModel)]="filtro" (keyup)="applyFilter()" placeholder="Digite sua busca..." />
+    </div>
+    <div class="col-md-4 col-lg-2">
+      <label class="form-label">Status</label>
+      <select class="form-select" [(ngModel)]="status" (ngModelChange)="applyFilter()">
+        <option value="Ativo">Ativos</option>
+        <option value="Inativo">Inativos</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    @if (!vazio) {
+    <div class="col-12 mt-2">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th class="mouse" (click)="sortOn('nome')">Nome</th>
+              <th class="mouse" (click)="sortOn('matricula')">Matrícula</th>
+              <th class="mouse" (click)="sortOn('turma')">Turma</th>
+              <th class="mouse" (click)="sortOn('responsavel')">Responsável</th>
+              <th class="mouse" (click)="sortOn('telefone')">Telefone</th>
+              <th></th><th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of lista; track item.id) {
+            <tr>
+              <td valign="middle">{{ item.nome }}</td>
+              <td valign="middle">{{ item.matricula }}</td>
+              <td valign="middle">{{ item.turma }}</td>
+              <td valign="middle">{{ item.responsavel }}</td>
+              <td valign="middle">{{ item.telefone }}</td>
+              <td valign="middle" class="largura-coluna-icone"><div class="mouse" (click)="alterar(item)" title="Editar"><i class="bi bi-pencil-square"></i></div></td>
+              <td valign="middle" class="largura-coluna-icone"><div class="mouse" (click)="excluir(item)" title="Excluir"><i class="bi bi-trash3"></i></div></td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-12 mt-3 d-flex flex-wrap justify-content-end align-items-center gap-3">
+      <div class="d-flex align-items-center gap-2">
+        <span>Itens por pág.:</span>
+        <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="paginacao()">
+          <option [ngValue]="10">10</option><option [ngValue]="20">20</option><option [ngValue]="50">50</option>
+        </select>
+      </div>
+      <span>{{ firstIndex }} - {{ lastIndex }} de {{ collectionSize }}</span>
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="paginacao()" />
+    </div>
+    } @else {
+    <div class="col"><br /><label class="form-label error">Nenhuma informação foi localizada.</label></div>
+    }
+  </div>
+</div>

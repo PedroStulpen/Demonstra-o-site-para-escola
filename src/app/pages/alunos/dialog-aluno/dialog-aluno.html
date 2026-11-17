@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ info.id ? 'Alterar aluno' : 'Cadastrar aluno' }}</h5>
+  <button type="button" class="btn-close" aria-label="Fechar" (click)="modal.dismiss()"></button>
+</div>
+<div class="modal-body">
+  <div class="row g-3">
+    <div class="col-12 col-md-8"><label class="form-label">Nome</label><input class="form-control" [(ngModel)]="info.nome" /></div>
+    <div class="col-6 col-md-2"><label class="form-label">Matrícula</label><input class="form-control" [(ngModel)]="info.matricula" /></div>
+    <div class="col-6 col-md-2"><label class="form-label">Turma</label><input class="form-control" [(ngModel)]="info.turma" placeholder="7º A" /></div>
+    <div class="col-12 col-md-5"><label class="form-label">Responsável</label><input class="form-control" [(ngModel)]="info.responsavel" /></div>
+    <div class="col-12 col-md-4"><label class="form-label">Telefone</label><input class="form-control" [(ngModel)]="info.telefone" /></div>
+    <div class="col-12 col-md-3">
+      <label class="form-label">Status</label>
+      <select class="form-select" [(ngModel)]="info.ativo"><option [ngValue]="true">Ativo</option><option [ngValue]="false">Inativo</option></select>
+    </div>
+  </div>
+  @if (erro) { <div class="error mt-3">{{ erro }}</div> }
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancelar</button>
+  <button class="btn btn-primary" (click)="salvar()">Salvar</button>
+</div>

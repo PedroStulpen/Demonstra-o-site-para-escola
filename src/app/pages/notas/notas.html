@@ -1,0 +1,43 @@
+<div class="container pt-3">
+  <div class="row barraTitulo mb-3"><div class="col-12 pt-3"><span class="textoTitulo">Notas</span></div></div>
+
+  <div class="row mt-3">
+    <div class="col-md-8 col-lg-6">
+      <label class="form-label">Aluno</label>
+      <select class="form-select mb-3" [(ngModel)]="alunoId" (ngModelChange)="selecionar()">
+        <option [ngValue]="null">Selecione um aluno</option>
+        @for (a of alunos; track a.id) { <option [ngValue]="a.id">{{ a.nome }} — {{ a.turma }}</option> }
+      </select>
+    </div>
+  </div>
+
+  @if (linhas.length) {
+  <div class="table-responsive">
+    <table class="table table-striped align-middle">
+      <thead>
+        <tr><th>Disciplina</th><th>1º bim.</th><th>2º bim.</th><th>3º bim.</th><th>4º bim.</th><th>Média</th><th>Situação</th></tr>
+      </thead>
+      <tbody>
+        @for (l of linhas; track l.disciplina) {
+        <tr>
+          <td>{{ l.disciplina }}</td>
+          @for (n of l.notas; track $index) {
+          <td style="width: 100px">
+            <input type="number" min="0" max="10" step="0.1" class="form-control form-control-sm" [(ngModel)]="l.notas[$index]" (ngModelChange)="salvo = false" />
+          </td>
+          }
+          <td><b>{{ media(l) !== null ? media(l)!.toFixed(1) : '—' }}</b></td>
+          <td [class.error]="situacao(l) === 'Em recuperação'">{{ situacao(l) }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex align-items-center gap-3">
+    <button class="btn btn-primary" (click)="salvar()"><i class="bi bi-check-lg"></i> Salvar notas</button>
+    @if (salvo) { <span class="text-success">Notas salvas.</span> }
+  </div>
+  } @else {
+  <p class="text-muted">Selecione um aluno para lançar as notas.</p>
+  }
+</div>
