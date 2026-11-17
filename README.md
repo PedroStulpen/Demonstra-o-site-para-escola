@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Escola Demo (Angular)
 
 Site de demonstração de uma escola: login, perfil do usuário, cadastro de alunos e lançamento de notas.
